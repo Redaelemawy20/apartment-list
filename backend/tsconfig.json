@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "outDir": "./dist", // Where the compiled JavaScript files will be saved
+    "rootDir": "./src", // Where the TypeScript source files are located
+    "module": "commonjs", // Module system (needed for Node.js apps)
+    "target": "es2019", // Target ECMAScript version
+    "strict": true, // Enable strict type-checking options
+    "esModuleInterop": true, // Allow ES module imports
+    "resolveJsonModule": true // Allow importing JSON files
+  },
+  "include": ["src/**/*"], // Files to include
+  "exclude": ["node_modules", "dist"] // Files to exclude
+}
