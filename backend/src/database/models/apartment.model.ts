@@ -17,16 +17,6 @@ const apartmentSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
-  developer: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Developer',
-    required: true,
-  },
-  area: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Area',
-    required: true,
-  },
   project: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Project',
@@ -36,6 +26,10 @@ const apartmentSchema = new mongoose.Schema({
     type: String,
     enum: ['Available', 'Sold', 'Rented'],
     default: 'Available',
+  },
+  image: {
+    type: String,
+    required: false,
   },
 });
 

@@ -5,6 +5,8 @@ const projectSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  location: String,
+  description: String,
   developer: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Developer',
@@ -14,6 +16,10 @@ const projectSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Area',
     required: true,
+  },
+  image: {
+    type: String,
+    required: false,
   },
   start_date: {
     type: Date,
@@ -28,6 +34,7 @@ const projectSchema = new mongoose.Schema({
     enum: ['In Progress', 'Under Construction', 'Completed'],
     default: 'In Progress',
   },
+  popularityScore: { type: Number, default: 0 },
 });
 
 const Project = mongoose.model('Project', projectSchema);

@@ -4,6 +4,7 @@ services:
   app:
     build:
       context: ./backend
+    command: sh -c "npm run dev"
     ports:
       - '5000:5000' # Map port 5000 of the container to port 5000 of the host
     environment:
@@ -15,6 +16,7 @@ services:
       - mongo # Ensure MongoDB starts first
   mongo:
     image: 'mongo:latest'
+    command: ['mongod', '--quiet']
     ports:
       - '27017:27017'
     volumes:

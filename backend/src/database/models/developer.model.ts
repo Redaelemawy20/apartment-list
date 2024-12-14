@@ -17,6 +17,10 @@ const developerSchema = new mongoose.Schema({
     type: String,
     required: false,
   },
+  logo: {
+    type: String,
+    required: false,
+  },
 });
 
 const Developer = mongoose.model('Developer', developerSchema);

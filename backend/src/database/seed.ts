@@ -1,7 +1,7 @@
-import Developer from './models/developer';
-import Area from './models/area';
-import Project from './models/project';
-import Apartment from './models/apartment';
+import Developer from './models/developer.model';
+import Area from './models/area.model';
+import Project from './models/project.model';
+import Apartment from './models/apartment.model';
 import connectDB from './connection';
 
 const seedData = async () => {

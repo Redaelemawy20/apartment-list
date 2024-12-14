@@ -9,12 +9,8 @@ const areaSchema = new mongoose.Schema({
     type: String,
     required: false,
   },
-  latitude: {
-    type: Number,
-    required: false,
-  },
-  longitude: {
-    type: Number,
+  image: {
+    type: String,
     required: false,
   },
 });
