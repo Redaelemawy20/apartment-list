@@ -1,11 +1,8 @@
-import Banner from '@/components/sections/Banner';
-import heroBanner from '@/assets/banner/banner@xl.webp';
 import Apartment from '@shared/interfaces/Apartment';
-import ApartmentCollection from '@/components/sections/ApartmentCollection';
-import Project from '@/components/cards/ProjectCard/Project';
-import Compound from '@/components/cards/Compound/Compund';
 import Hero from '@/components/sections/Hero/Hero';
-import Areas from '@/components/sections/Areas/Areas';
+import Areas from '@/components/sections/Areas';
+import Projects from '@/components/sections/Projects';
+import Search from '@/components/sections/Filter/Filter';
 let a: Apartment;
 export default function AppartmentListing() {
   return (
@@ -21,7 +18,9 @@ export default function AppartmentListing() {
       /> */}
       {/* <ApartmentCollection view="most-recommended" /> */}
       {/* <Project /> */}
-      <Areas view="top 5" />
+      {/* <Areas view="top-5" /> */}
+      {/* {<Projects view="all" />} */}
+      <Search />
       {/* <Compound /> */}
     </div>
   );

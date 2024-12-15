@@ -1,0 +1,12 @@
+.img_wrapper {
+  overflow: hidden;
+  position: relative;
+  height: 450px;
+}
+
+.property_info {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+}

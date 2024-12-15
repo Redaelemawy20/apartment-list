@@ -5,7 +5,6 @@ const projectSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  location: String,
   description: String,
   developer: {
     type: mongoose.Schema.Types.ObjectId,

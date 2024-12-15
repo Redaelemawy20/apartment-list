@@ -4,7 +4,7 @@ import Project from '../database/models/project.model';
 // Get all projects
 export const getAllProjects = async (req: Request, res: Response) => {
   try {
-    const projects = await Project.find();
+    const projects = await Project.find().select('_id');
     res.status(200).json(projects);
   } catch (err) {
     res.status(500).json({ message: 'Failed to fetch projects', error: err });
@@ -14,9 +14,10 @@ export const getAllProjects = async (req: Request, res: Response) => {
 // Get top 5 compounds (finished projects)
 export const getTopCompounds = async (req: Request, res: Response) => {
   try {
-    const compounds = await Project.find({ status: 'Finished' })
+    const compounds = await Project.find()
       .sort({ popularityScore: -1 }) // Sort by popularity
-      .limit(5); // Limit to 5
+      .limit(5)
+      .select('_id'); // Limit to 5
     res.status(200).json(compounds);
   } catch (err) {
     res
@@ -45,7 +46,9 @@ export const getProjectById = async (req: Request, res: Response) => {
 // Get "Coming Soon" projects
 export const getComingSoonProjects = async (req: Request, res: Response) => {
   try {
-    const comingSoonProjects = await Project.find({ status: 'Coming Soon' }); // Find projects with status "Coming Soon"
+    const comingSoonProjects = await Project.find({
+      status: 'Coming Soon',
+    }).select('_id'); // Find projects with status "Coming Soon"
 
     if (comingSoonProjects.length === 0) {
       res.status(404).json({ message: 'No coming soon projects found' });

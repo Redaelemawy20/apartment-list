@@ -1,55 +1,36 @@
 'use client';
-import styles from './property-card.module.css';
+import styles from './project.module.css';
 import useOnScreen from '@/components/hooks/useOnScreen';
-import { useEffect } from 'react';
-import { getApartment } from '@/api';
 import { useFetch } from '@/components/hooks/useFetch';
+import { getProject } from '@/api';
+import { useEffect } from 'react';
 import CardContent from './CardContent';
-interface ProjecdtCardI {
+import EmptyCard from './EmptyCard';
+interface ProjectCardI {
   project: string;
 }
-const Property = ({ project }: ProjecdtCardI) => {
-  const [ref, isvisible] = useOnScreen<HTMLElement>();
-
+const ProjectCard = ({ project }: ProjectCardI) => {
+  const [ref, isvisible] = useOnScreen<HTMLElement>({ threshold: 0.5 });
   const {
-    data: propertyData,
+    data: projectData,
     error,
     loading,
     fetchManually,
-  } = useFetch({ fetcher: () => getApartment(property), load: false });
-
+  } = useFetch({ fetcher: () => getProject(project), load: false });
   useEffect(() => {
-    fetchManually();
+    if (isvisible && !projectData) fetchManually();
   }, [isvisible]);
 
   return (
     <article
-      className={[
-        'card col col-12 col-md-4',
-        loading ? styles.skeleton : '',
-        error ? styles.error : '',
-      ].join(' ')}
       ref={ref}
-      style={{ minHeight: '100px' }}
+      className={`${styles.img_wrapper} card col-4 ${
+        loading ? styles.skeleton_wrapper : ''
+      } ${error ? 'border-danger' : ''}`}
     >
-      {propertyData ? (
-        <CardContent propertyData={propertyData} />
-      ) : (
-        // empty card
-        <div className="property-section text-decoration-none d-block mb-3">
-          <div className="image"></div>
-          <div className="property-content">
-            <div className={styles.head}>
-              <div className="d-flex"></div>
-              <div className="property-project"></div>
-            </div>
-            <div className="specs"></div>
-            <div className={`${styles.title} mt-3`}></div>
-          </div>
-        </div>
-      )}
+      {projectData ? <CardContent project={projectData} /> : <EmptyCard />}
     </article>
   );
 };
 
-export default Property;
+export default ProjectCard;
