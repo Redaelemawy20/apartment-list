@@ -22,14 +22,8 @@ const Banner = ({
   return (
     <div className={styles.banner}>
       <div className={styles.bannerWrapper}>
-        <div className="position-relative w-100" style={{ height: '300px' }}>
-          <Image
-            src={imgURL}
-            alt="flat-img"
-            fill
-            quality={100}
-            objectFit="cover"
-          />
+        <div className="position-relative w-100" style={{ height: '500px' }}>
+          <Image src={imgURL} alt="flat-img" fill quality={100} />
         </div>
         {/* <div className="banner-content text-capitalize">
           <h6 className="title">{title}</h6>

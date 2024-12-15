@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
-
+import { ApartmentStatus } from '../../../../shared/interfaces/Apartment';
 const apartmentSchema = new mongoose.Schema({
-  name: {
+  title: {
     type: String,
     required: true,
   },
@@ -24,12 +24,24 @@ const apartmentSchema = new mongoose.Schema({
   },
   status: {
     type: String,
-    enum: ['Available', 'Sold', 'Rented'],
-    default: 'Available',
+    enum: ApartmentStatus,
+    default: ApartmentStatus.Available,
   },
   image: {
     type: String,
     required: false,
+  },
+  views: {
+    required: false,
+    type: Number,
+  },
+  recommendations: {
+    type: Number,
+    required: true,
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now(),
   },
 });
 

@@ -6,8 +6,7 @@ import Area from '../database/models/area.model';
 export const getTopAreas = async (req: Request, res: Response) => {
   try {
     const topAreas = await Project.aggregate([
-      { $match: { status: 'Finished' } }, // Only finished compounds
-      { $group: { _id: '$location', compoundCount: { $sum: 1 } } }, // Group by location
+      { $group: { _id: '$area', compoundCount: { $sum: 1 } } }, // Group by location
       { $sort: { compoundCount: -1 } }, // Sort by number of compounds
       { $limit: 5 }, // Limit to top 5
     ]);
@@ -42,8 +41,7 @@ export const getAreaById = async (req: Request, res: Response) => {
 
     // Optionally, you can also get the number of finished compounds in this area
     const compoundCount = await Project.countDocuments({
-      location: area.name,
-      status: 'Finished',
+      area: area._id,
     });
 
     res.status(200).json({

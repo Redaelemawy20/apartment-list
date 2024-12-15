@@ -30,7 +30,46 @@ export const getAllApartments = async (req: Request, res: Response) => {
     res.status(500).json({ message: 'Error fetching apartments', error: err });
   }
 };
+export const getMostRecentApartments = async (req: Request, res: Response) => {
+  try {
+    const apartments = await Apartment.find()
+      .sort({ createdAt: -1 })
+      .limit(10)
+      .select('_id');
+    res.status(200).json(apartments);
+  } catch (error) {
+    res
+      .status(500)
+      .json({ message: 'Error fetching most recent apartments', error });
+  }
+};
 
+export const getMostRecommendedApartments = async (
+  req: Request,
+  res: Response
+) => {
+  try {
+    const apartments = await Apartment.find()
+      .sort({ recommendations: -1 })
+      .limit(10);
+    res.status(200).json(apartments);
+  } catch (error) {
+    res
+      .status(500)
+      .json({ message: 'Error fetching most recommended apartments', error });
+  }
+};
+
+export const getMostViewedApartments = async (req: Request, res: Response) => {
+  try {
+    const apartments = await Apartment.find().sort({ views: -1 }).limit(10);
+    res.status(200).json(apartments);
+  } catch (error) {
+    res
+      .status(500)
+      .json({ message: 'Error fetching most viewed apartments', error });
+  }
+};
 // Add a new apartment
 export const addApartment = async (req: Request, res: Response) => {
   try {

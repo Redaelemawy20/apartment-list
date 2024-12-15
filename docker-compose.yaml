@@ -1,19 +1,35 @@
 version: '3.8'
 services:
-  # Express app container
-  app:
+  # frontend:
+  #   build:
+  #     context: ./frontend
+  #   ports:
+  #     - 3000:3000
+  #   environment:
+  #     - NEXT_PUBLIC_API_URL=http://backend:5000
+  #     - NEXT_WEBPACK_USEPOLLING=true
+  #   volumes:
+  #     - ./frontend:/app
+  #     - ./shared:/shared
+  #     - ./frontend/node_modules:/app/node_modules
+  #   depends_on:
+  #     - backend
+
+  backend:
     build:
       context: ./backend
     command: sh -c "npm run dev"
     ports:
-      - '5000:5000' # Map port 5000 of the container to port 5000 of the host
+      - 5000:5000
     environment:
-      - MONGO_URI=mongodb://mongo:27017/apartmentDB # MongoDB connection string pointing to 'mongo' service
+      - MONGO_URI=mongodb://mongo:27017/apartmentDB
     volumes:
       - ./backend:/app
+      - ./shared:/shared
       - ./backend/node_modules:/app/node_modules
     depends_on:
-      - mongo # Ensure MongoDB starts first
+      - mongo
+
   mongo:
     image: 'mongo:latest'
     command: ['mongod', '--quiet']

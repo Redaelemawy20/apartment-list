@@ -1,9 +1,9 @@
 import Image from 'next/image';
-import styles from './PropertyDeveloper.module.css';
-interface ProperytDeveloperI {
-  developer: string;
+import styles from './property-project.module.css';
+interface PropertyProjectI {
+  project: string;
 }
-const PropertyDeveloper = ({ developer }: ProperytDeveloperI) => {
+const PropertyProject = ({ project }: PropertyProjectI) => {
   // load developer Info
   let developerData = { name: 'ABC Developer', image: '....' };
   return (
@@ -18,4 +18,4 @@ const PropertyDeveloper = ({ developer }: ProperytDeveloperI) => {
   );
 };
 
-export default PropertyDeveloper;
+export default PropertyProject;

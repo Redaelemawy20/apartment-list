@@ -1,0 +1,46 @@
+.main_Section {
+  width: 100%;
+  height: 57vh;
+  position: relative;
+}
+.main_Section img {
+  object-fit: cover;
+  object-position: center;
+}
+.container {
+  max-width: 550px;
+  position: absolute;
+  top: 100px;
+  left: 100px;
+}
+.main_Section h1 {
+  font-size: 72px;
+  font-weight: 900;
+  color: #fff;
+  line-height: 1;
+}
+
+.main_Section a {
+  background-color: #fff;
+  font-size: 24px;
+  font-weight: 400;
+  border-radius: 8px;
+  padding: 0.5rem 1.5rem;
+  display: inline-block;
+  margin-top: 2rem;
+}
+@media (max-width: 724px) {
+  .container {
+    left: 2rem;
+  }
+}
+@media (max-width: 524px) {
+  .container {
+    max-width: 100%;
+    margin: auto;
+    top: 150px;
+  }
+  .main_Section h1 {
+    font-size: 52px;
+  }
+}
