@@ -1,0 +1,37 @@
+## To run the app:
+
+- write in the terminal : docker-compose up
+- There are services
+  1- frontend
+  2- backend
+  3- mongodb
+
+## After the backend service is up please excute this command to seed the database:
+
+- docker exec -it <backend_container_name> npm run seed
+
+## KeyFeatures of the backend:
+
+- RESTful API Design:
+- Provides well-structured API endpoints for interaction with the frontend.
+- Follows RESTful conventions for easy integration.
+- CRUD Operations:
+- Minimizing the response for example respond only with [ids] and then the front end will query - for it
+
+- Supports Create, Read operations for managing apartments, projects, and areas.
+  Dynamic Filters:
+
+- Advanced filtering options for apartments (e.g., price, size, rooms, status, area, and project).
+- Enables efficient search and retrieval based on user preferences.
+- Database Integration:
+- Powered by MongoDB with Mongoose for schema-based data modeling and validation.
+- Seeding Functionality:
+- Includes a seeding mechanism to populate the database with test data for development or demonstration purposes.
+
+## key Features of the frontend:
+
+- Lazy loading fetching
+- apartment listing with different sorting (most-recent-recomended..)
+- areas listing with different sorting (most-recent-recomended..)
+- projects listing with different sorting (most-recent-recomended..)
+- added filter functionality to filiter with (e.g., price, size, rooms, status, area, and project)

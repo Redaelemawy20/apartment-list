@@ -4,6 +4,5 @@ COPY package*.json ./
 RUN npm install
 COPY . .
 
-# RUN npm run build
 # Run the application
 CMD ["npm", "run", 'dev']
