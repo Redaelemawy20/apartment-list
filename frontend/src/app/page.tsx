@@ -3,7 +3,6 @@ import Hero from '@/components/sections/Hero/Hero';
 import Areas from '@/components/sections/Areas';
 import Projects from '@/components/sections/Projects';
 import Search from '@/components/sections/Filter/Filter';
-let a: Apartment;
 export default function AppartmentListing() {
   return (
     <div>

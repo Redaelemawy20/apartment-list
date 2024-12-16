@@ -70,6 +70,7 @@ export const getMostViewedApartments = async (req: Request, res: Response) => {
       .json({ message: 'Error fetching most viewed apartments', error });
   }
 };
+
 // Add a new apartment
 export const addApartment = async (req: Request, res: Response) => {
   try {

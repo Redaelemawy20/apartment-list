@@ -5,6 +5,7 @@ import apartmentsRoutes from './routes/apartments.routes';
 import areasRoutes from './routes/areas.routes';
 import developersRoutes from './routes/developers.routes';
 import projectRoutes from './routes/project.routes';
+import searchRoutes from './routes/search.routes';
 const app = express();
 app.use(
   cors({
@@ -18,5 +19,5 @@ app.use('/api', apartmentsRoutes);
 app.use('/api', areasRoutes);
 app.use('/api', developersRoutes);
 app.use('/api', projectRoutes);
-
+app.use('/api', searchRoutes);
 export default app;

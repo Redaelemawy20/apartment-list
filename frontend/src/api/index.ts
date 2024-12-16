@@ -3,6 +3,7 @@ import Apartment from '@shared/interfaces/Apartment';
 import { ApiResponse, IdsResponse } from '@shared/types/Api';
 import AreaI from '../../../shared/interfaces/AreaI';
 import ProjectI from '@shared/interfaces/ProjectI';
+import FilterOptions from '../../../shared/interfaces/FilterOptions';
 
 const baseApiUrl = process.env.NEXT_PUBLIC_API_URL as string;
 const apartmentApiUrl = `${baseApiUrl}/api/apartments`;
@@ -86,6 +87,37 @@ export const getProject = async (id: string) => {
       throw new Error(`Failed to fetch project with ID: ${id}`);
     }
     return (await response.json()) as ApiResponse<ProjectI>;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+};
+// Search Api
+const searchApiUrl = `${baseApiUrl}/api/search`;
+export const getSearchOptions = async () => {
+  try {
+    const response = await fetch(`${searchApiUrl}/options`);
+    if (!response.ok) {
+      throw new Error(`Failed to fetch search options`);
+    }
+    return (await response.json()) as ApiResponse<FilterOptions>;
+  } catch (error) {
+    console.error(error);
+    // throw error;
+  }
+};
+
+export const getSearchResult = async (query: string) => {
+  console.log(`${searchApiUrl}?${query}`);
+  console.log({ query });
+  console.log('........');
+
+  try {
+    const response = await fetch(`${searchApiUrl}?${query}`);
+    if (!response.ok) {
+      throw new Error(`Failed to fetch search results`);
+    }
+    return (await response.json()) as ApiResponse<IdsResponse>;
   } catch (error) {
     console.error(error);
     throw error;

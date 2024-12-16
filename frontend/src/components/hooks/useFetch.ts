@@ -20,7 +20,7 @@ export const useFetch = <T>({
   const [loading, setLoading] = useState<boolean>(load);
   const [error, setError] = useState<boolean>(false);
 
-  const fetchManually = useCallback(async () => {
+  const fetchManually = async () => {
     setLoading(true);
     setError(false);
 
@@ -33,13 +33,13 @@ export const useFetch = <T>({
     } finally {
       setLoading(false);
     }
-  }, [fetcher]);
+  };
 
   useEffect(() => {
     if (load) {
       fetchManually();
     }
-  }, [load, fetchManually]);
+  }, [load]);
 
   return { data, loading, error, fetchManually };
 };
