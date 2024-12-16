@@ -3,7 +3,8 @@ WORKDIR "/app"
 COPY package*.json ./
 RUN npm install
 COPY . .
+# Set environment variable to indicate production mode
+ENV NODE_ENV=production
+
 # Run the application
-# Seed the database
-# RUN npm run seed
-# CMD ["npm", "run", "dev"]
+CMD ["npm",  "start"]

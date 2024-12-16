@@ -1,24 +1,22 @@
 version: '3.8'
 services:
-  # frontend:
-  #   build:
-  #     context: ./frontend
-  #   ports:
-  #     - 3000:3000
-  #   environment:
-  #     - NEXT_PUBLIC_API_URL=http://backend:5000
-  #     - NEXT_WEBPACK_USEPOLLING=true
-  #   volumes:
-  #     - ./frontend:/app
-  #     - ./shared:/shared
-  #     - ./frontend/node_modules:/app/node_modules
-  #   depends_on:
-  #     - backend
+  frontend:
+    build:
+      context: ./frontend
+    ports:
+      - 3000:3000
+    environment:
+      - NEXT_PUBLIC_API_URL=http://backend:5000
+    volumes:
+      - ./frontend:/app
+      - ./shared:/shared
+      # - ./frontend/node_modules:/app/node_modules
+    depends_on:
+      - backend
 
   backend:
     build:
       context: ./backend
-    command: sh -c "npm run dev"
     ports:
       - 5000:5000
     environment:
@@ -26,7 +24,7 @@ services:
     volumes:
       - ./backend:/app
       - ./shared:/shared
-      - ./backend/node_modules:/app/node_modules
+      # - ./backend/node_modules:/app/node_modules
     depends_on:
       - mongo
 
