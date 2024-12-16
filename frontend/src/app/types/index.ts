@@ -3,5 +3,5 @@ export type ApartmentListingType =
   | 'most-recommended'
   | 'most-viewed';
 
-export type AreasListType = 'top-5' | 'all';
-export type ProjectListType = 'all' | 'top-5' | 'comming-soon';
+export type AreasListType = 'top-areas' | 'all';
+export type ProjectListType = 'recent' | 'top' | 'coming-soon';

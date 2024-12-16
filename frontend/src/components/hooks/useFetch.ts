@@ -3,6 +3,7 @@ import { useState, useEffect, useCallback } from 'react';
 type UseFetchArgs<T> = {
   fetcher: () => Promise<T>; // Function to fetch data
   load?: boolean; // Whether to load data initially
+  deps?: any[];
 };
 
 type UseFetchResult<T> = {
@@ -15,6 +16,7 @@ type UseFetchResult<T> = {
 export const useFetch = <T>({
   fetcher,
   load = true,
+  deps = [],
 }: UseFetchArgs<T>): UseFetchResult<T> => {
   const [data, setData] = useState<T | null>(null);
   const [loading, setLoading] = useState<boolean>(load);
@@ -39,7 +41,7 @@ export const useFetch = <T>({
     if (load) {
       fetchManually();
     }
-  }, [load]);
+  }, [load, ...deps]);
 
   return { data, loading, error, fetchManually };
 };

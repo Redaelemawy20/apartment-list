@@ -4,14 +4,19 @@ import Apartment from '../database/models/apartment.model';
 // Get a single apartment by ID
 export const getApartmentById = async (req: Request, res: Response) => {
   try {
-    const apartmentId = req.params.id; // Get the apartment ID from URL params
-    const apartment = await Apartment.findById(apartmentId);
+    const apartmentId = req.params.id;
+
+    // Fetch apartment details and populate related data
+    const apartment = await Apartment.findById(apartmentId)
+      .populate('project', 'name description') // Include project name and description
+      .populate('area', 'name description'); // Include area name and description
 
     if (!apartment) {
       res.status(404).json({ message: 'Apartment not found' });
       return;
     }
 
+    // Send response with the populated data
     res.status(200).json(apartment);
   } catch (err) {
     res.status(500).json({ message: 'Error fetching apartment', error: err });

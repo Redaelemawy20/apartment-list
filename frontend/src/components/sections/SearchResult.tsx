@@ -41,6 +41,9 @@ const SearchResults: React.FC<SearchResultsProps> = () => {
     <div className="container my-4">
       {loading && <h2>Loading Search ...</h2>}
       {error && <h2>Error fetching data...</h2>}
+      {!error && !loading && (!searchData || !searchData.length) && (
+        <h2>Sorry no search result</h2>
+      )}
       <div className="row">
         {searchData &&
           searchData.map((apartment) => (
@@ -49,20 +52,6 @@ const SearchResults: React.FC<SearchResultsProps> = () => {
       </div>
     </div>
   );
-};
-
-// Helper function for badge color
-const getStatusBadge = (status: string) => {
-  switch (status) {
-    case 'Available':
-      return 'bg-success';
-    case 'Sold':
-      return 'bg-danger';
-    case 'Rented':
-      return 'bg-warning';
-    default:
-      return 'bg-secondary';
-  }
 };
 
 export default SearchResults;

@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import Project from '../database/models/project.model';
+import Apartment from '../database/models/apartment.model';
 
 // Get all projects
 export const getAllProjects = async (req: Request, res: Response) => {
@@ -30,14 +31,27 @@ export const getTopCompounds = async (req: Request, res: Response) => {
 export const getProjectById = async (req: Request, res: Response) => {
   try {
     const projectId = req.params.id; // Get the project ID from URL parameters
-    const project = await Project.findById(projectId); // Find the project by ID
+
+    // Find the project by ID
+    const project = await Project.findById(projectId);
 
     if (!project) {
       res.status(404).json({ message: 'Project not found' });
       return;
     }
 
-    res.status(200).json(project);
+    // Count the number of properties (apartments) related to this project
+    const propertyCount = await Apartment.countDocuments({
+      project: projectId,
+    });
+
+    // Add the propertyCount to the project object
+    const projectDetails = {
+      ...project.toObject(), // Convert Mongoose document to plain object
+      propertyCount,
+    };
+
+    res.status(200).json(projectDetails);
   } catch (err) {
     res.status(500).json({ message: 'Error fetching project', error: err });
   }
@@ -47,7 +61,7 @@ export const getProjectById = async (req: Request, res: Response) => {
 export const getComingSoonProjects = async (req: Request, res: Response) => {
   try {
     const comingSoonProjects = await Project.find({
-      status: 'Coming Soon',
+      status: 'In Progress',
     }).select('_id'); // Find projects with status "Coming Soon"
 
     if (comingSoonProjects.length === 0) {

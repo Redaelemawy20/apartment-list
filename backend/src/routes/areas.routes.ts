@@ -8,7 +8,7 @@ import {
 
 const router = express.Router();
 
-// Route to get top 5 areas based on number of finished projects
+// Route to get top areas based on number of finished projects
 router.get('/areas/top-areas', getTopAreas);
 
 // Route to get all areas

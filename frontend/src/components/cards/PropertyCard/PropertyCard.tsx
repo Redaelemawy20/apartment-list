@@ -19,32 +19,38 @@ const Property = ({ property }: PropertyCardI) => {
   } = useFetch({ fetcher: () => getApartment(property), load: false });
 
   useEffect(() => {
-    fetchManually();
+    if (isvisible) fetchManually();
   }, [isvisible]);
 
   return (
     <article
       className={[
-        'card col col-12 col-md-4',
+        'card col-12 col-md-6 col-lg-4 shadow-sm border-0 mb-4',
         loading ? styles.skeleton : '',
         error ? styles.error : '',
       ].join(' ')}
       ref={ref}
-      style={{ minHeight: '100px' }}
+      style={{ minHeight: '200px', borderRadius: '10px', overflow: 'hidden' }}
     >
       {propertyData ? (
         <CardContent propertyData={propertyData} />
       ) : (
-        // empty card
-        <div className="property-section text-decoration-none d-block mb-3">
-          <div className="image"></div>
-          <div className="property-content">
-            <div className={styles.head}>
-              <div className="d-flex"></div>
-              <div className="property-project"></div>
-            </div>
-            <div className="specs"></div>
-            <div className={`${styles.title} mt-3`}></div>
+        // Empty card skeleton for loading
+        <div className="property-section text-decoration-none d-block">
+          <div className="image bg-light" style={{ height: '200px' }}></div>
+          <div className="property-content p-3">
+            <div
+              className="bg-light mb-2"
+              style={{ height: '20px', width: '70%' }}
+            ></div>
+            <div
+              className="bg-light mb-2"
+              style={{ height: '20px', width: '50%' }}
+            ></div>
+            <div
+              className="bg-light"
+              style={{ height: '15px', width: '90%' }}
+            ></div>
           </div>
         </div>
       )}

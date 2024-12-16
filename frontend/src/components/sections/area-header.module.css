@@ -1,0 +1,24 @@
+.header {
+  padding: 8px 0;
+}
+
+.title {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #333;
+  margin: 0;
+}
+
+.sortDropdown select {
+  padding: 8px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  background-color: white;
+  outline: none;
+  transition: border-color 0.2s ease;
+  font-size: 1rem;
+}
+
+.sortDropdown select:focus {
+  border-color: #007bff;
+}

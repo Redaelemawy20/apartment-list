@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import Apartment from '../database/models/apartment.model';
 import Project from '../database/models/project.model';
 import Area from '../database/models/area.model';
+import { maxHeaderSize } from 'http';
 export const getFilterOptions = async (req: Request, res: Response) => {
   try {
     const projects = await Project.find({}, '_id name');
@@ -22,7 +23,8 @@ export const getFilterOptions = async (req: Request, res: Response) => {
 };
 
 const buildQuery = (params: any) => {
-  const { minPrice, maxPrice, rooms, size, status, area, project } = params;
+  const { minPrice, maxPrice, rooms, minSize, maxSize, status, area, project } =
+    params;
 
   const query: any = {};
 
@@ -39,8 +41,10 @@ const buildQuery = (params: any) => {
   }
 
   // Size filter
-  if (size) {
-    query.size = { $gte: +size };
+  if (minSize || maxSize) {
+    query.size = {};
+    if (minSize) query.size.$gte = +minSize;
+    if (maxPrice) query.size.$lte = +maxPrice;
   }
 
   // Status filter
@@ -65,7 +69,7 @@ const buildQuery = (params: any) => {
 const fetchApartments = async (query: any) => {
   try {
     const apartments = await Apartment.find(query)
-      .select('_id') // Select only `_id`, update as needed.
+      .select('_id') // Select only `_id`
       .exec();
     return apartments;
   } catch (error: any) {

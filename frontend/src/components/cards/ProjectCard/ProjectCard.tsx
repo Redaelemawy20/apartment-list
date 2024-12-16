@@ -24,7 +24,7 @@ const ProjectCard = ({ project }: ProjectCardI) => {
   return (
     <article
       ref={ref}
-      className={`${styles.img_wrapper} card col-4 ${
+      className={`${styles.img_wrapper}  col-12 col-md-4 col-lg-3 ${
         loading ? styles.skeleton_wrapper : ''
       } ${error ? 'border-danger' : ''}`}
     >

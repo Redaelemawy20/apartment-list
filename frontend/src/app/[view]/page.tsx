@@ -2,23 +2,17 @@ import Banner from '@/components/sections/Banner';
 import heroBanner from '@/assets/banner/banner@xl.webp';
 import ApartmentsCollection from '@/components/sections/ApartmentCollection';
 import { ApartmentListingType } from '../types';
+import Hero from '@/components/sections/Hero/Hero';
 
 interface Props {
   params: { view: ApartmentListingType };
 }
 const ApartmentListing = ({ params: { view } }: Props) => {
   return (
-    <div>
-      <Banner
-        title="Find Your Home"
-        subtitle="With large collection made for your needs"
-        url="/search?purpose=for-rent"
-        urlTitle="explore renting"
-        description="Explore apartments, villas, homes, and more"
-        imgURL={heroBanner.src}
-      />
+    <>
+      <Hero />
       <ApartmentsCollection view={view} />
-    </div>
+    </>
   );
 };
 

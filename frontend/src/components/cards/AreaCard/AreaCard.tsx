@@ -10,7 +10,7 @@ interface AreaCardI {
   area: string;
 }
 const AreaCard = ({ area }: AreaCardI) => {
-  const [ref, isvisible] = useOnScreen<HTMLElement>({ threshold: 0.5 });
+  const [ref, isvisible] = useOnScreen<HTMLElement>();
   const {
     data: areaData,
     error,
@@ -18,16 +18,15 @@ const AreaCard = ({ area }: AreaCardI) => {
     fetchManually,
   } = useFetch({ fetcher: () => getArea(area), load: false });
   useEffect(() => {
-    if (isvisible && !areaData) fetchManually();
+    if (isvisible) fetchManually();
   }, [isvisible]);
-  console.log({ error });
 
   return (
     <article
       ref={ref}
-      className={`${styles.img_wrapper} card col-4 ${
-        loading ? styles.skeleton_wrapper : ''
-      } ${error ? 'border-danger' : ''}`}
+      className={`${styles.card} col-12 col-md-6 col-lg-4 ${
+        loading ? styles.skeleton : ''
+      } ${error ? styles.error : ''}`}
     >
       {areaData ? <CardContent area={areaData} /> : <EmptyCard />}
     </article>

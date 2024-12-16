@@ -1,45 +1,90 @@
 import Apartment from '@shared/interfaces/Apartment';
 import Image from 'next/image';
-import Link from 'next/link';
 import defaultPhoto from '@/assets/house.jpg';
-import styles from './property-card.module.css';
 import { GoVerified } from 'react-icons/go';
 import { FaBed } from 'react-icons/fa';
 import { BsFillGridFill } from 'react-icons/bs';
-import PropertyProject from './PropertyProject';
+import Link from 'next/link';
+
 const CardContent = ({ propertyData }: { propertyData: Apartment }) => {
-  let { image, title } = propertyData;
+  const { image, name, price, rooms, size, status, _id } = propertyData;
+
   return (
-    <div>
-      <div className="property-section text-decoration-none d-block mb-3">
-        <div className="image" style={{ width: '400px', height: '50px' }}>
-          <Image src={defaultPhoto} alt={'title'} fill />
+    <Link href={`/apartments/${_id}`} className="text-decoration-none">
+      <div
+        className="card h-100 position-relative"
+        style={{
+          transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+          borderRadius: '10px',
+          overflow: 'hidden',
+        }}
+        onMouseEnter={(e) => {
+          (e.currentTarget as HTMLElement).style.transform = 'scale(1.03)';
+          (e.currentTarget as HTMLElement).style.boxShadow =
+            '0px 4px 20px rgba(0, 0, 0, 0.15)';
+        }}
+        onMouseLeave={(e) => {
+          (e.currentTarget as HTMLElement).style.transform = 'scale(1)';
+          (e.currentTarget as HTMLElement).style.boxShadow = 'none';
+        }}
+      >
+        {/* Image Section */}
+        <div className="position-relative" style={{ height: '200px' }}>
+          <Image
+            src={defaultPhoto || '/default-photo.jpg'}
+            alt={name || 'property photo'}
+            fill
+            className="card-img-top object-fit-cover"
+            style={{
+              borderTopLeftRadius: '10px',
+              borderTopRightRadius: '10px',
+            }}
+          />
+          {status && (
+            <span
+              className={`badge position-absolute top-0 start-0 m-3 ${
+                status === 'Available' ? 'bg-success' : 'bg-secondary'
+              }`}
+              style={{ fontSize: '0.85rem', padding: '0.5rem 0.75rem' }}
+            >
+              {status}
+            </span>
+          )}
         </div>
-        <div className="property-content">
-          <div className={styles.head}>
-            <div className="d-flex">
-              {propertyData.status && (
-                <span className="icon me-2 text-success">
-                  <GoVerified />
-                </span>
-              )}
-              <span className={styles.price}>EGP {propertyData.price}</span>
-            </div>
-            {/* <PropertyProject project={propertyData.project} /> */}
+
+        {/* Content Section */}
+        <div className="card-body d-flex flex-column justify-content-between">
+          {/* Price and Verified */}
+          <div className="d-flex justify-content-between align-items-center mb-3">
+            <h5
+              className="card-title mb-0 text-truncate"
+              style={{ maxWidth: '75%' }}
+            >
+              {name.length > 15 ? `${name.substring(0, 15)}...` : name}
+            </h5>
+            <h6 className="text-primary fw-bold">
+              {price ? `EGP ${price.toLocaleString()}` : 'N/A'}
+            </h6>
           </div>
-          <div className="specs">
-            {propertyData.rooms} <FaBed className="me-3" />
-            {propertyData.size}
-            <BsFillGridFill />
+
+          {/* Specifications */}
+          <div className="d-flex justify-content-between text-muted small mb-3">
+            <span>
+              <FaBed className="me-1" /> {rooms} Rooms
+            </span>
+            <span>
+              <BsFillGridFill className="me-1" /> {size} Sq. Ft.
+            </span>
           </div>
-          <div className={`${styles.title} mt-3`}>
-            {title && title.length > 50
-              ? `${title.substring(0, 30)}...`
-              : title}
+          <div className="text-muted small">
+            <GoVerified className="me-1 text-success" />
+            {propertyData.project && (
+              <span>In {propertyData.project.name}</span>
+            )}
           </div>
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
 

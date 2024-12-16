@@ -141,9 +141,11 @@ const Search = ({ options = {} as FilterOptions }: SearchI) => {
                   onChange={handleChange}
                 >
                   <option value="">Any</option>
-                  <option value="1">1 Room</option>
-                  <option value="2">2 Rooms</option>
+                  <option value="1">1+ Room</option>
+                  <option value="2">2+ Rooms</option>
                   <option value="3">3+ Rooms</option>
+                  <option value="4">4+ Rooms</option>
+                  <option value="5">5+ Rooms</option>
                 </select>
               </div>
 

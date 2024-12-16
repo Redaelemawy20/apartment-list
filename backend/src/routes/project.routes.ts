@@ -9,8 +9,8 @@ import {
 
 const router = express.Router();
 
-router.get('/projects', getAllProjects); // Get all projects
-router.get('/projects/top-compounds', getTopCompounds); // Get top 5 compounds
+router.get('/projects/recent', getAllProjects); // Get all projects
+router.get('/projects/top', getTopCompounds); // Get top 5 compounds
 
 // Route to get all "Coming Soon" projects
 router.get('/projects/coming-soon', getComingSoonProjects);

@@ -1,9 +1,13 @@
 import mongoose from 'mongoose';
 import { ApartmentStatus } from '../../../../shared/interfaces/Apartment';
 const apartmentSchema = new mongoose.Schema({
-  title: {
+  name: {
     type: String,
     required: true,
+  },
+  description: {
+    type: String,
+    required: false,
   },
   price: {
     type: Number,
@@ -20,6 +24,11 @@ const apartmentSchema = new mongoose.Schema({
   project: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Project',
+    required: true,
+  },
+  area: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Area',
     required: true,
   },
   status: {

@@ -68,9 +68,7 @@ export const getArea = async (id: string) => {
 const projectsApiUrl = `${baseApiUrl}/api/projects`;
 export const getProjects = async (view: ProjectListType) => {
   try {
-    const response = await fetch(
-      `${projectsApiUrl}${view !== 'all' ? `/${view}` : ''}`
-    );
+    const response = await fetch(`${projectsApiUrl}/${view}`);
     if (!response.ok) {
       throw new Error('Failed to fetch top areas');
     }
@@ -108,10 +106,6 @@ export const getSearchOptions = async () => {
 };
 
 export const getSearchResult = async (query: string) => {
-  console.log(`${searchApiUrl}?${query}`);
-  console.log({ query });
-  console.log('........');
-
   try {
     const response = await fetch(`${searchApiUrl}?${query}`);
     if (!response.ok) {

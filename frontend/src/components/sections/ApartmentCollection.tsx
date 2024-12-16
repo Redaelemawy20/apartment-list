@@ -12,7 +12,7 @@ const ApartmentsCollection = async ({ view }: ApartmentsCollectionI) => {
   try {
     const apartments = await getApartments(view);
     return (
-      <section className={styles.collection}>
+      <section className={'${styles.collection} container my-4 '}>
         <h2>{title}</h2>
         <div className="row">
           {apartments.map((item, index) => (
@@ -33,10 +33,10 @@ export default ApartmentsCollection;
 const getTitle = (view: string) => {
   switch (view) {
     case 'most-recent':
-      return 'Most Recent.';
+      return 'Most Recent Apartments.';
     case 'most-recommended':
-      return 'Most Recommended.';
+      return 'Most Recommended Apartments.';
     default:
-      return 'Most Viewed.';
+      return 'Most Viewed Apartments.';
   }
 };

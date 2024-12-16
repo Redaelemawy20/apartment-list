@@ -1,0 +1,54 @@
+.header {
+  text-align: center;
+}
+
+.header .title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.imageGallery {
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+.imageGallery .mainImage {
+  max-width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.specs {
+  background: #f9f9f9;
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.specs .specCard {
+  padding: 15px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.details ul {
+  padding: 0;
+}
+
+.details ul li {
+  margin-bottom: 10px;
+  font-size: 1rem;
+  color: #555;
+}
+
+.description {
+  line-height: 1.8;
+  font-size: 1rem;
+}
+
+.cta button {
+  font-size: 1.2rem;
+  font-weight: bold;
+}

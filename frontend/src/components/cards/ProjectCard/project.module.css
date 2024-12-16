@@ -1,12 +1,71 @@
-.img_wrapper {
+.card {
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   overflow: hidden;
-  position: relative;
-  height: 450px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.property_info {
-  position: absolute;
-  left: 50%;
-  bottom: 0;
-  transform: translateX(-50%);
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.imgWrapper {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+}
+
+.cardImage {
+  border-bottom: 3px solid #eee;
+}
+
+.cardBody {
+  padding: 16px;
+  background-color: #fff;
+}
+
+.projectTitle {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #333;
+}
+
+.propertyCount {
+  font-size: 1rem;
+  color: #777;
+  margin-bottom: 16px;
+}
+
+.viewButton {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.viewButton:hover {
+  background-color: #0056b3;
+}
+
+.emptyText {
+  text-align: center;
+  font-size: 1rem;
+  color: #bbb;
+}
+
+.skeleton_wrapper {
+  background-color: #f0f0f0;
+  border-radius: 12px;
+  box-shadow: none;
+}
+
+.border-danger {
+  border: 2px solid red;
 }

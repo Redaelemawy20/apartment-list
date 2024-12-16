@@ -1,41 +1,39 @@
-import React from 'react';
-
+'use client';
+import React, { useState } from 'react';
 import { getAreas } from '@/api';
-import styles from '../collection.module.css';
+import styles from './collection.module.css';
 import { AreasListType } from '@/app/types';
 import AreaCard from '@/components/cards/AreaCard/AreaCard';
-interface Areas {
-  view: AreasListType;
-}
-const Areas = async ({ view }: Areas) => {
-  let title = getTitle(view);
+import { useFetch } from '../hooks/useFetch';
+import AreaHeader from './AreasHeader';
 
-  try {
-    const areas = await getAreas(view);
-    return (
-      <section className={`container mt-5 ${styles.collection}`}>
-        <h2>{title}</h2>
+const Areas = () => {
+  const [activeSort, setActiveSort] = useState<AreasListType>('all');
+  const {
+    data: areasData,
+    error,
+    loading,
+  } = useFetch({ fetcher: () => getAreas(activeSort), deps: [activeSort] });
+
+  const handleChangeSort = (sort: AreasListType) => {
+    setActiveSort(sort);
+  };
+
+  return (
+    <>
+      <AreaHeader onSortChange={handleChangeSort} />
+      <div className={`container mt-5 ${styles.collection}`}>
+        {error && <h2>Error Loading Areas</h2>}
+        {loading && <h2>Loading Areas...</h2>}
         <div className="row gap-2">
-          {areas.map((item, index) => (
-            <AreaCard area={item._id} key={item._id} />
-          ))}
+          {areasData &&
+            areasData.map((item, index) => (
+              <AreaCard area={item._id} key={item._id} />
+            ))}
         </div>
-      </section>
-    );
-  } catch (error) {
-    console.log({ error });
-
-    return <section>Error loading areas</section>;
-  }
+      </div>
+    </>
+  );
 };
 
 export default Areas;
-
-const getTitle = (view: AreasListType) => {
-  switch (view) {
-    case 'top 5':
-      return 'Top 5 Areas';
-    default:
-      return 'All Areas.';
-  }
-};
