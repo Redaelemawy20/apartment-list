@@ -10,7 +10,7 @@ services:
     volumes:
       - ./frontend:/app
       - ./shared:/shared
-      # - ./frontend/node_modules:/app/node_modules
+      - ./frontend/node_modules:/app/node_modules
     depends_on:
       - backend
 
@@ -24,7 +24,7 @@ services:
     volumes:
       - ./backend:/app
       - ./shared:/shared
-      # - ./backend/node_modules:/app/node_modules
+      - ./backend/node_modules:/app/node_modules
     depends_on:
       - mongo
 
