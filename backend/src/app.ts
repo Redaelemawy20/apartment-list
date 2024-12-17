@@ -7,9 +7,10 @@ import developersRoutes from './routes/developers.routes';
 import projectRoutes from './routes/project.routes';
 import searchRoutes from './routes/search.routes';
 const app = express();
+
 app.use(
   cors({
-    origin: 'http://localhost:3000',
+    origin: process.env.FRONT_APP,
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Content-Type', 'Authorization'],
   })

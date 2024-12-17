@@ -6,11 +6,12 @@ services:
     ports:
       - 3000:3000
     environment:
-      - NEXT_PUBLIC_API_URL=http://backend:5000
+      - API_URL=http://backend:5000
+      - NEXT_PUBLIC_API_URL=http://localhost:5000
     volumes:
       - ./frontend:/app
+      - /app/node_modules
       - ./shared:/shared
-      - ./frontend/node_modules:/app/node_modules
     depends_on:
       - backend
 
@@ -21,10 +22,11 @@ services:
       - 5000:5000
     environment:
       - MONGO_URI=mongodb://mongo:27017/apartmentDB
+      - FRONT_APP=http://localhost:3000
     volumes:
       - ./backend:/app
+      - /app/node_modules
       - ./shared:/shared
-      - ./backend/node_modules:/app/node_modules
     depends_on:
       - mongo
 
@@ -38,3 +40,6 @@ services:
 volumes:
   mongo-data:
     driver: local
+networks:
+  app-network:
+    driver: bridge

@@ -112,6 +112,7 @@ const seedData = async () => {
           area: projects[0].area,
           project: projects[0]._id,
           status: 'Available',
+          recommendations: 44,
         },
         {
           name: 'Penthouse',
@@ -122,6 +123,7 @@ const seedData = async () => {
           area: projects[0].area,
           project: projects[0]._id,
           status: 'Sold',
+          recommendations: 50,
         },
         {
           name: '1BHK Flat',
@@ -132,6 +134,7 @@ const seedData = async () => {
           area: projects[1].area,
           project: projects[1]._id,
           status: 'Available',
+          recommendations: 90,
         },
       ];
       await Apartment.insertMany(apartments);

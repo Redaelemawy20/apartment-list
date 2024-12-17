@@ -5,7 +5,7 @@ import AreaI from '../../../shared/interfaces/AreaI';
 import ProjectI from '@shared/interfaces/ProjectI';
 import FilterOptions from '../../../shared/interfaces/FilterOptions';
 
-const baseApiUrl = process.env.NEXT_PUBLIC_API_URL as string;
+const baseApiUrl = process.env.API_URL || process.env.NEXT_PUBLIC_API_URL;
 const apartmentApiUrl = `${baseApiUrl}/api/apartments`;
 
 export const getApartments = async (view: string) => {
