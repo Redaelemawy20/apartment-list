@@ -8,7 +8,7 @@
 
 ## After the backend service is up please excute this command to seed the database:
 
-- docker exec -it <backend_container_name> npm run seed
+- docker exec -it <backend_container_id> npm run seed
 
 ## KeyFeatures of the backend:
 
