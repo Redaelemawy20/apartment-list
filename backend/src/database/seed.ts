@@ -146,5 +146,18 @@ const seedData = async () => {
   }
 };
 
-// Run the seed data function
-seedData();
+// Export the seed data function
+export default seedData;
+
+// Run the seed data function if this file is run directly
+if (require.main === module) {
+  seedData()
+    .then(() => {
+      console.log('Database seeding completed successfully');
+      process.exit(0);
+    })
+    .catch((error) => {
+      console.error('Error seeding database:', error);
+      process.exit(1);
+    });
+}
